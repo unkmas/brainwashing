@@ -1,9 +1,7 @@
 class Healthcheck
   class CheckResults
     CheckResult = Struct.new(:check_name, :success) do
-      def success?
-        @success
-      end
+      alias :success?, :success
 
       def to_h
         {check_name => success}

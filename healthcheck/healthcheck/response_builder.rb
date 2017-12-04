@@ -4,7 +4,7 @@ class Healthcheck
   class ResponseBuilder
     SUCCESS_CODE = 200
     FAIL_CODE = 424
-    HEADERS = {"Content-Type" => "application/json"}
+    HEADERS = {"Content-Type" => "application/json"}.freeze
 
     def initialize(results)
       @results = results

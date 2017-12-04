@@ -7,13 +7,17 @@ class Healthcheck
     end
 
     def execute_checks
-      Healthcheck.checks.each { |check_name, check| execute_check(check_name, check) }
+      Healthcheck.checks.each do |check_name, check|
+        @results.push check_name, execute_check(check)
+      end
     end
 
     private
 
-    def execute_check(check_name, check)
-      @results.push check_name, !!check.call
+    def execute_check(check)
+      !!check.call
+    rescue
+      false
     end
   end
 end
