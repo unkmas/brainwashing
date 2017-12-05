@@ -1,13 +1,16 @@
-class Healthcheck
+module Healthcheck
   class Middleware
-    def initialize(app)
-      @app = app
+    def self.build(&block)
+      config = Config.build(&block)
+      new(config)
+    end
+
+    def initialize(config)
+      @config = config
     end
 
     def call(env)
-      return @app.call(env) unless env['PATH_INFO'] == Healthcheck.path
-
-      executor = Executor.new
+      executor = Executor.new(@config)
       executor.execute_checks
 
       ResponseBuilder.new(executor.results).build

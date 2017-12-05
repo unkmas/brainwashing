@@ -1,13 +1,14 @@
-class Healthcheck
+module Healthcheck
   class Executor
     attr_reader :results
 
-    def initialize
+    def initialize(config)
+      @config = config
       @results = CheckResults.new
     end
 
     def execute_checks
-      Healthcheck.checks.each do |check_name, check|
+      @config.checks.each do |check_name, check|
         @results.push check_name, execute_check(check)
       end
     end

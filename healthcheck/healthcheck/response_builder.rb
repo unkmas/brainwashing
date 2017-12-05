@@ -1,6 +1,6 @@
 require 'json'
 
-class Healthcheck
+module Healthcheck
   class ResponseBuilder
     SUCCESS_CODE = 200
     FAIL_CODE = 424

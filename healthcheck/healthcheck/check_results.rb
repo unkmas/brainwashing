@@ -1,7 +1,7 @@
-class Healthcheck
+module Healthcheck
   class CheckResults
     CheckResult = Struct.new(:check_name, :success) do
-      alias :success?, :success
+      alias_method :success?, :success
 
       def to_h
         {check_name => success}
